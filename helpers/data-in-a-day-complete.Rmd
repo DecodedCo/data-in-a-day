@@ -1,0 +1,84 @@
+---
+title: "Data in a day"
+output: html_notebook
+---
+
+```{r}
+library("rpart")
+library("rpart.plot")
+```
+
+## Getting the data
+
+```{r}
+df <- read.csv("mushrooms.csv")
+```
+
+
+
+## What data to we have?
+```{r}
+head(df)
+```
+
+```{r}
+summary(df)
+```
+
+
+## Making predictions
+Build a decision tree
+```{r}
+decisionTree <- rpart(class ~., data=df, method="class")
+```
+
+
+
+## How good are your predictions?
+
+Confusion matrix
+```{r}
+pred <- predict(decisionTree,df,type="class")
+confusionMatrix <- table(df$class,pred)  
+print(confusionMatrix)
+```
+
+Percentrage of predicitons we got right
+```{r}
+(confusionMatrix[1,1]+confusionMatrix[2,2])/(sum(confusionMatrix))*100
+```
+
+There is also a lot of information about our tree
+```{r}
+summary(decisionTree)
+```
+
+But it is nice to see it
+```{r}
+rpart.plot(decisionTree)
+text(decisionTree)
+```
+
+## Avoiding overfitting
+Split data into test and train
+```{r}
+set.seed(100)  # setting seed to reproduce results of random sampling
+trainingRowIndex <- sample(1:nrow(df), 0.7*nrow(df))  # row indices for training data
+trainingData <- df[trainingRowIndex, ]  # model training data
+testData  <- df[-trainingRowIndex, ]   # test data
+```
+
+Re run model with training data
+```{r}
+decisionTree2 <- rpart(class ~., data=trainingData, method="class")
+```
+
+Look at predictions using our test data
+```{r}
+pred <- predict(decisionTree2,testData,type="class")
+confusionMatrix2 <- table(testData$class,pred)  
+print(confusionMatrix2)
+print((confusionMatrix2[1,1]+confusionMatrix2[2,2])/(sum(confusionMatrix2))*100)
+```
+
+
