@@ -1,1 +1,1 @@
-# data-in-a-day
+# Data in a day
