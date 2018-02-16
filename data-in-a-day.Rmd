@@ -3,7 +3,7 @@ title: "Data in a day"
 output: html_notebook
 ---
 
-## Getting the data
+## Source the data
 
 Tell R to use the jsonlite library
 ```{r}
@@ -15,6 +15,9 @@ Use the firebase API to pull ball dropping data
 api <- "https://newton-decoded.firebaseio.com/falls.json"
 json_data <- fromJSON(api)
 ```
+
+
+## Explore and transform the data
 
 Let's have a look at what comes back from the API...it's a bit gross
 ```{r}
@@ -29,9 +32,6 @@ for (name in names(json_data)) {
 }
 ```
 
-
-
-## Exploring the data
 Let's have a look at it now - much better!
 ```{r}
 head(df)
