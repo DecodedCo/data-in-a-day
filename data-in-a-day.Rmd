@@ -1,0 +1,66 @@
+---
+title: "Data in a day"
+output: html_notebook
+---
+
+## Getting the data
+
+Tell R to use the jsonlite library
+```{r}
+library("jsonlite")
+```
+
+Use the firebase API to pull ball dropping data
+```{r}
+api <- "https://newton-decoded.firebaseio.com/falls.json"
+json_data <- fromJSON(api)
+```
+
+Let's have a look at what comes back from the API...it's a bit gross
+```{r}
+print(json_data)
+```
+
+We are going to go through each element in the list and add it to a dataframe so we can easily work with it
+```{r}
+df = data.frame()
+for (name in names(json_data)) {
+    df <- rbind(df, data.frame("height"=json_data[[name]]$x, "time2"=json_data[[name]]$y))
+}
+```
+
+
+
+## Exploring the data
+Let's have a look at it now - much better!
+```{r}
+head(df)
+```
+
+```{r}
+summary(df)
+```
+
+Visualise the data - this looks familiar
+```{r}
+plot(x=df$height, y=df$time2, xlab="Height", ylab="t^2", xlim=c(0,4), ylim=c(0,1))
+```
+
+
+## Building a model
+Build a linear mathematical model - this is using calculus under the hood to find the best line.
+```{r}
+linearModel <- lm(time2 ~ height, data=df)
+```
+
+## Evaluate your model
+And finally...how good a fit is this model? Look for the adjusted R-squared, 1 = perfect.
+```{r}
+summary(linearModel)$adj.r.squared
+```
+
+Let's see the model plotted alongside our data, yay!
+```{r}
+plot(x=df$height, y=df$time2, xlab="Height", ylab="t^2", xlim=c(0,4), ylim=c(0,1))
+abline(linearModel)
+```
