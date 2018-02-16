@@ -56,7 +56,6 @@ summary(decisionTree)
 But it is nice to see it
 ```{r}
 rpart.plot(decisionTree)
-text(decisionTree)
 ```
 
 ## Avoiding overfitting
