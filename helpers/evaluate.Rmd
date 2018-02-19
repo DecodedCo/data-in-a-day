@@ -1,0 +1,13 @@
+## How good are your predictions?
+
+Confusion matrix
+```{r}
+pred <- predict(decisionTree,df,type="class")
+c <- table(df$class,pred)  
+print(c)
+```
+
+Percentage of predictions we got right
+```{r}
+(c[1,1]+c[2,2])/(sum(c))*100
+```

@@ -39,13 +39,13 @@ decisionTree <- rpart(class ~., data=df, method="class")
 Confusion matrix
 ```{r}
 pred <- predict(decisionTree,df,type="class")
-confusionMatrix <- table(df$class,pred)  
-print(confusionMatrix)
+c <- table(df$class,pred)  
+print(c)
 ```
 
 Percentage of predictions we got right
 ```{r}
-(confusionMatrix[1,1]+confusionMatrix[2,2])/(sum(confusionMatrix))*100
+(c[1,1]+c[2,2])/(sum(c))*100
 ```
 
 There is also a lot of information about our tree
@@ -75,7 +75,7 @@ decisionTree2 <- rpart(class ~., data=trainingData, method="class")
 Look at predictions using our test data
 ```{r}
 pred <- predict(decisionTree2,testData,type="class")
-confusionMatrix2 <- table(testData$class,pred)  
-print(confusionMatrix2)
-print((confusionMatrix2[1,1]+confusionMatrix2[2,2])/(sum(confusionMatrix2))*100)
+c2 <- table(testData$class,pred)  
+print(c2)
+print((c2[1,1]+c2[2,2])/(sum(c2))*100)
 ```
