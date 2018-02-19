@@ -36,17 +36,12 @@ decisionTree <- rpart(class ~., data=df, method="class")
 
 ## How good are your predictions?
 
-Confusion matrix
+Proportion of predictions we got right
 ```{r}
-pred <- predict(decisionTree,df,type="class")
-c <- table(df$class,pred)  
-print(c)
+prediction <- predict(decisionTree, df, type="class")
+sum(prediction == df$class)/nrow(df)
 ```
 
-Percentage of predictions we got right
-```{r}
-(c[1,1]+c[2,2])/(sum(c))*100
-```
 
 There is also a lot of information about our tree
 ```{r}
@@ -74,8 +69,6 @@ decisionTree2 <- rpart(class ~., data=trainingData, method="class")
 
 Look at predictions using our test data
 ```{r}
-pred <- predict(decisionTree2,testData,type="class")
-c2 <- table(testData$class,pred)  
-print(c2)
-print((c2[1,1]+c2[2,2])/(sum(c2))*100)
+prediction2 <- predict(decisionTree, testData, type="class")
+sum(prediction2 == testData$class)/nrow(testData)
 ```
