@@ -8,15 +8,13 @@ library("rpart")
 library("rpart.plot")
 ```
 
-## Getting the data
-
+## Source the data
 ```{r}
 df <- read.csv("mushrooms.csv")
 ```
 
 
-
-## What data to we have?
+## Explore and transform the data
 ```{r}
 head(df)
 ```
@@ -26,24 +24,15 @@ summary(df)
 ```
 
 
-## Making predictions
-Build a decision tree
+## Building a model
+Since we don't know what will best predict edible or not, let's build a decision tree based on all the features ( the dot after ~ tells rpart to use all features)
 ```{r}
 decisionTree <- rpart(class ~., data=df, method="class")
 ```
 
 
-
-## How good are your predictions?
-
-Proportion of predictions we got right
-```{r}
-prediction <- predict(decisionTree, df, type="class")
-sum(prediction == df$class)/nrow(df)
-```
-
-
-There is also a lot of information about our tree
+## Evaluate your model
+There is a lot of information produced about the tree
 ```{r}
 summary(decisionTree)
 ```
@@ -53,8 +42,22 @@ But it is nice to see it
 rpart.plot(decisionTree)
 ```
 
+It is unfortuante that we can't smell a picture! Can we predict without the smell?
+```{r}
+df$odor <- NULL
+decisionTree <- rpart(class ~ ., data=df, method="class")
+rpart.plot(decisionTree)
+```
+
+Quantitatively, how well are the predictions? Let's look at th proportion of predictions we got right
+```{r}
+prediction <- predict(decisionTree, df, type="class")
+sum(prediction == df$class)/nrow(df)
+```
+
+
 ## Avoiding overfitting
-Split data into test and train
+Split data into test (30%) and train (70%)
 ```{r}
 set.seed(100)  # setting seed to reproduce results of random sampling
 trainingRowIndex <- sample(1:nrow(df), 0.7*nrow(df))  # row indices for training data
@@ -69,6 +72,6 @@ decisionTree2 <- rpart(class ~., data=trainingData, method="class")
 
 Look at predictions using our test data
 ```{r}
-prediction2 <- predict(decisionTree, testData, type="class")
+prediction2 <- predict(decisionTree2, testData, type="class")
 sum(prediction2 == testData$class)/nrow(testData)
 ```
