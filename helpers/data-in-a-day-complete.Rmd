@@ -43,7 +43,7 @@ confusionMatrix <- table(df$class,pred)
 print(confusionMatrix)
 ```
 
-Percentrage of predicitons we got right
+Percentage of predictions we got right
 ```{r}
 (confusionMatrix[1,1]+confusionMatrix[2,2])/(sum(confusionMatrix))*100
 ```
@@ -79,5 +79,3 @@ confusionMatrix2 <- table(testData$class,pred)
 print(confusionMatrix2)
 print((confusionMatrix2[1,1]+confusionMatrix2[2,2])/(sum(confusionMatrix2))*100)
 ```
-
-

@@ -1,0 +1,21 @@
+## Avoiding overfitting
+Split data into test and train
+```{r}
+set.seed(100)  # setting seed to reproduce results of random sampling
+trainingRowIndex <- sample(1:nrow(df), 0.7*nrow(df))  # row indices for training data
+trainingData <- df[trainingRowIndex, ]  # model training data
+testData  <- df[-trainingRowIndex, ]   # test data
+```
+
+Re run model with training data
+```{r}
+decisionTree2 <- rpart(class ~., data=trainingData, method="class")
+```
+
+Look at predictions using our test data
+```{r}
+pred <- predict(decisionTree2,testData,type="class")
+c2 <- table(testData$class,pred)  
+print(c2)
+print((c2[1,1]+c2[2,2])/(sum(c2))*100)
+```
