@@ -75,6 +75,7 @@ testData  <- df[-trainingRowIndex, ]   # test data
 Re run model with training data
 ```{r}
 decisionTree2 <- rpart(class ~., data=trainingData, method="class")
+rpart.plot(decisionTree2)
 ```
 
 Look at predictions using our test data
