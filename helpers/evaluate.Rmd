@@ -1,7 +1,0 @@
-## How good are your predictions?
-
-Proportion of predictions we got right
-```{r}
-prediction <- predict(decisionTree, df, type="class")
-sum(prediction == df$class)/nrow(df)
-```
