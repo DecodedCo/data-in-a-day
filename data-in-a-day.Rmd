@@ -42,7 +42,7 @@ summary(df)
 
 Visualise the data
 ```{r}
-plot(x=df$height, y=df$time2, xlab="Height", ylab="t^2", xlim=c(0,4), ylim=c(0,1))
+# write code here to plot data - use tab to help you
 ```
 
 
@@ -55,7 +55,7 @@ linearModel <- lm(time2 ~ . , data=df)
 ## Evaluate your model
 The first thing to do is eyeball it to get a feel for what we have built.
 ```{r}
-plot(x=df$height, y=df$time2, xlab="Height", ylab="t^2", xlim=c(0,4), ylim=c(0,1))
+# write code here to plot data - use tab to help you
 abline(linearModel)
 ```
 
