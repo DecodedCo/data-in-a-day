@@ -12,8 +12,7 @@ library("jsonlite")
 
 Use the firebase API to pull ball dropping data
 ```{r}
-api <- "https://newton-decoded.firebaseio.com/falls.json"
-json_data <- fromJSON(api)
+json_data <- fromJSON("https://newton-decoded.firebaseio.com/falls.json")
 ```
 
 
@@ -50,7 +49,7 @@ plot(x=df$height, y=df$time2, xlab="Height", ylab="t^2", xlim=c(0,4), ylim=c(0,1
 ## Building a model
 Build a linear mathematical model - this is using calculus under the hood to find the best line.
 ```{r}
-linearModel <- lm(time2 ~ height, data=df)
+linearModel <- lm(time2 ~ . , data=df)
 ```
 
 ## Evaluate your model
