@@ -26,7 +26,7 @@ print(json_data)
 
 We are going to go through each element in the list and add it to a dataframe so we can easily work with it
 ```{r}
-df = data.frame()
+df <- data.frame()
 for (name in names(json_data)) {
     df <- rbind(df, data.frame("height"=json_data[[name]]$x, "time2"=json_data[[name]]$y))
 }
