@@ -3,14 +3,13 @@ title: "Data in a day"
 output: html_notebook
 ---
 
-## Source the data
-
-Tell R to use the jsonlite library
+## Import libraries
 ```{r}
 library("jsonlite")
 library("plyr")
 ```
 
+## Source the data
 Use the firebase API to pull ball dropping data
 ```{r}
 json_data <- fromJSON("https://newton-decoded.firebaseio.com/falls.json")
