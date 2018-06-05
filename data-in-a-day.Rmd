@@ -53,7 +53,7 @@ Visualise the data
 ## Building a model
 Build a linear mathematical model - this is using calculus under the hood to find the best line.
 ```{r}
-linearModel <- lm(time2 ~ . , data=df)
+linearModel <- lm(time2 ~ height , data=df)
 ```
 
 ## Evaluate your model
