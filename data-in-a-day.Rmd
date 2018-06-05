@@ -27,7 +27,7 @@ We need to create a function to help us make rows of data from our json
 ```{r}
 createRow <- function(balldrop){
  data.frame("height"=balldrop$x,"time2"=balldrop$y)
- }
+}
 ```
 
 Using Hadley's plyr library we can go through the whole json and put all the rows of data together
