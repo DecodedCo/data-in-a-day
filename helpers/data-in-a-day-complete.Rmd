@@ -56,7 +56,7 @@ decisionTree <- rpart(class ~ ., data=df, method="class")
 rpart.plot(decisionTree)
 ```
 
-Quantitatively, how well are the predictions?
+Quantitatively, how good are the predictions?
 ```{r}
 prediction <- predict(decisionTree, df, type="class")
 correct <- prediction == df$class
