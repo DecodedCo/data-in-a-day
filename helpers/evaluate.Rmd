@@ -1,7 +1,15 @@
 ## How good are your predictions?
 
-Proportion of predictions we got right
+Quantitatively, how good are the predictions?
 ```{r}
 prediction <- predict(decisionTree, df, type="class")
-sum(prediction == df$class)/nrow(df)
+correct <- prediction == df$class
+data.frame(df$class, prediction, correct)
+```
+
+Let's look at the proportion of predictions we got right
+```{r}
+print(sum(correct))
+print(nrow(df))
+print(sum(correct)/nrow(df))
 ```
