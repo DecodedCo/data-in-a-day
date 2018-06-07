@@ -59,7 +59,7 @@ rpart.plot(decisionTree)
 Quantitatively, how well are the predictions?
 ```{r}
 prediction <- predict(decisionTree, df, type="class")
-correct = prediction == df$class
+correct <- prediction == df$class
 data.frame(df$class, prediction, correct)
 ```
 
