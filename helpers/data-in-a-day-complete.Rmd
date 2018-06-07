@@ -56,12 +56,19 @@ decisionTree <- rpart(class ~ ., data=df, method="class")
 rpart.plot(decisionTree)
 ```
 
-Quantitatively, how well are the predictions? Let's look at the proportion of predictions we got right
+Quantitatively, how well are the predictions?
 ```{r}
 prediction <- predict(decisionTree, df, type="class")
-sum(prediction == df$class)/nrow(df)
+correct = prediction == df$class
+data.frame(df$class, prediction, correct)
 ```
 
+Let's look at the proportion of predictions we got right
+```{r}
+print(sum(correct))
+print(nrow(df))
+print(sum(correct)/nrow(df))
+```
 
 ## Avoiding overfitting
 Split data into test (30%) and train (70%)
