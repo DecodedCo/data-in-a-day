@@ -1,0 +1,2 @@
+ggplot(df, aes(`odor`, fill = `class`)) + geom_bar() + labs(title =
+                    "Stacked Bar Chart", x = "odor" , y = "count of odors"  )
