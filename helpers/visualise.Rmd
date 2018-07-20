@@ -1,0 +1,7 @@
+Let's visualise the mushroom data using the `ggplot` library to see if there are any features in our dataset that could help us predict if a mushroom is poisonous or edible.
+
+We'll create a bar chart, in which each value for `odor` will have a bar, colour-coded according to `class` (edible or poisonous). 
+
+```{r}
+ggplot(df, aes(odor, fill=class)) + geom_bar() 
+```
