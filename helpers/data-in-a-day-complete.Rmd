@@ -26,8 +26,7 @@ summary(df)
 
 Let's try and visualise this data with the help of https://www.kaggle.com/shwetp/caret-ggplot2
 ```{r}
-ggplot(df, aes(`odor`, fill = `class`)) + geom_bar() + labs(title =
-                    "Stacked Bar Chart", x = "odor" , y = "count of odors"  )
+ggplot(df, aes(`odor`, fill = `class`))
 ```
 
 
