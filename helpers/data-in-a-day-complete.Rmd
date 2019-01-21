@@ -24,9 +24,9 @@ head(df)
 summary(df)
 ```
 
-Let's try and visualise this data with the help of https://www.kaggle.com/shwetp/caret-ggplot2
+Let's visualise this data
 ```{r}
-ggplot(df, aes(`odor`, fill = `class`))
+ggplot(df, aes(odor, fill=class)) + geom_bar() 
 ```
 
 
